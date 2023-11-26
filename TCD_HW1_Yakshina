@@ -1,0 +1,57 @@
+# задание 1
+from drawbot_skia.drawbot import oval, saveImage, fill
+fill(0, 1, 1)
+x = 30
+step = 47
+for i in range(20):
+    oval(x, 10, 30, 30)
+    x += step
+saveImage('circle01.pdf')
+
+
+# задание 2
+from drawbot_skia.drawbot import oval, saveImage, fill
+fill(0, 1, 1)
+x = 30
+step = 47
+for i in range(20):
+    y = 30
+    for j in range(20):
+        oval(x, y, 30, 30)
+        y += step
+    x += step
+saveImage('circle02.pdf')
+
+
+# задание 3
+from drawbot_skia.drawbot import oval, line, saveImage, fill
+import math
+fill(0, 1, 1)
+centr = 500
+radius_cent = 100
+count_seg = 1500
+step_angl = 2*math.pi/count_seg
+
+
+def x_coordinate(i, cor):
+    return centr + cor*math.cos(step_angl*i)
+
+def y_coordinate(i, cor):
+    return centr + cor*math.sin(step_angl*i)
+
+for i in range(count_seg):
+    if i%2 == 0: 
+        length =  400 
+    else:
+        length =  300
+
+    x_start = x_coordinate(i, radius_cent) 
+    x_end = x_coordinate(i, length)
+    y_start = y_coordinate(i, radius_cent)
+    y_end = y_coordinate(i, length)
+
+    pt1 = (x_start, y_start)
+    pt2 = (x_end, y_end)
+    line(pt1, pt2)
+
+saveImage('circle03.pdf')
